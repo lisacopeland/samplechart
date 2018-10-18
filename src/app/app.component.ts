@@ -1,7 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { Chart } from 'chart.js';
-
+/**
+ * This is the root of the app
+ *
+ * @export
+ * @class AppComponent
+ * @implements {OnInit}
+ * @implements {AfterViewInit}
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +25,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private weatherService: WeatherService,
       private cd: ChangeDetectorRef) {}
 
-  ngOnInit() {
+/**
+ * Method that runs on the initialization of the app. Executes the methods that
+ * create the three graphs.
+ *
+ * @memberof AppComponent
+ */
+ngOnInit() {
     this.createDoughnutChart();
     this.createLineGraph();
     this.weatherService.dailyForecast()
@@ -33,8 +46,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     // this.cd.detectChanges();
   }
-
-  createDoughnutChart() {
+/**
+ * Create the doughnut graph
+ *
+ * @memberof AppComponent
+ */
+createDoughnutChart() {
 
       const dataNumbers = [20, 50, 30];
       const dataLabels = [
@@ -72,8 +89,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
 
   }
-
-  createLineGraph() {
+/**
+ * Create the line graph
+ *
+ * @memberof AppComponent
+ */
+createLineGraph() {
       const dataLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -111,7 +132,15 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   }
 
-  createWeatherChart(res) {
+/**
+ * Create the weather chart
+ * This graph is interesting because it has three lines instead of one. This is super
+ * important to know.
+ *
+ * @param {*} res
+ * @memberof AppComponent
+ */
+createWeatherChart(res) {
     const temp_max = res['list'].map(x => x.main.temp_max);
     const temp_min = res['list'].map(x => x.main.temp_min);
     const temp_avg = res['list'].map(x => x.main.temp);

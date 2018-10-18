@@ -1,0 +1,27 @@
+#
+# Force a new build:
+#
+#   docker-compose up --build
+#
+# Start container:
+#
+#   docker-compose up -d
+#
+# Stop container:
+#
+#   docker-compose down
+#
+version: '3.7'
+
+services:
+
+  web:
+
+    container_name: chartapp
+
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    ports:
+      - 80:80
