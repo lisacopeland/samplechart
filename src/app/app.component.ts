@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { WeatherService } from './weather.service';
+import { WeatherService, ResponseData } from './weather.service';
 import { Chart } from 'chart.js';
 /**
  * This is the root of the app
@@ -35,9 +35,9 @@ ngOnInit() {
     this.createDoughnutChart();
     this.createLineGraph();
     this.weatherService.dailyForecast()
-      .subscribe(res => {
-        console.log(res);
-        this.createWeatherChart(res);
+      .subscribe((resultData: ResponseData)  => {
+        console.log(resultData);
+        this.createWeatherChart(resultData);
 
       });
   }
